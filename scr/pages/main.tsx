@@ -1,14 +1,16 @@
 import * as React from "react";
-import Cocktails from "../components/cocktails";
+import { useState } from "react";
 import Header from "../components/header";
 import Contents from "../components/contents";
+import Jin from "../components/jin";
 
 const Main = () => {
+  const [base, setBase] = useState("진");
   return (
     <>
       <Header />
       <Contents />
-      <Cocktails />
+      {base === "진" ? <Jin /> : null}
     </>
   );
 };
