@@ -28,6 +28,10 @@ const config: Configuration = {
         loader: "ts-loader",
         exclude: path.join(__dirname, "node_modules"),
       },
+      {
+        test: /\.(png|jpg)$/,
+        use: ["file-loader"],
+      },
     ],
   },
   plugins: [new ReactRefreshPlugin(), new ForkTsCheckerWebpackPlugin()],
