@@ -19,19 +19,19 @@ require("dotenv").config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//DB 접속
+// DB 접속
 // const connect = () => {
 //   if (process.env.NODE_ENV !== "production") {
 //     mongoose.set("debug", true);
 //   }
 // };
 
-// mongoose
-//   .connect(process.env.DB_URI, {
-//     useNewUrlParser: true,
-//     userCreateIndex: true,
-//   })
-//   .then(() => {
-//     console.log("Successfully connected to mongodb");
-//   })
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    userCreateIndex: true,
+  })
+  .then(() => {
+    console.log("Successfully connected to mongodb");
+  })
+  .catch((err: string) => console.log(err));
