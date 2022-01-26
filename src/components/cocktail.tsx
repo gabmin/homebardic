@@ -6,13 +6,13 @@ import styled from "styled-components";
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
   return (
     <Container>
-      <Title>{data.name}</Title>
+      <Title>{data.card.name}</Title>
       <ContentsGrid>
-        <Content>기주 : {data.base}</Content>
-        <Content>재료 : {data.ingredient}</Content>
-        <Content>용법 : {data.method}</Content>
-        <Content>잔: {data.glass}</Content>
-        <Content>설명: {data.description}</Content>
+        <Content>기주 : {data.card.base}</Content>
+        <Content>재료 : {data.card.ingredient}</Content>
+        <Content>용법 : {data.card.method}</Content>
+        <Content>잔: {data.card.glass}</Content>
+        <Content>설명: {data.card.description}</Content>
       </ContentsGrid>
     </Container>
   );
