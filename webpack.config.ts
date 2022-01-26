@@ -12,7 +12,7 @@ const config: Configuration = {
 
   //입력
   entry: {
-    app: "./scr/client",
+    app: "./src/client",
   },
 
   //모듈 적용
