@@ -1,25 +1,47 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
+import { selectedBase } from "../redux/reducers/baseSlice";
+import { useAppDispatch } from "../redux/hooks";
 import styled from "styled-components";
 
 const Contents: FunctionComponent = () => {
-  const [base, setBase] = useState("진");
+  const dispatch = useAppDispatch();
+  const [base, setBase] = useState("전체");
 
-  const onClickBtn = (props:string) => () => {
-    setBase(`${props}`)
-  }
+  const onClickBtn = (props: string) => () => {
+    setBase(`${props}`);
+    dispatch(selectedBase(props));
+  };
   return (
     <Container>
       <ButtonGrid>
-        <All base={base} type="button" onClick={onClickBtn("전체")}>전체</All>
-        <Jin base={base} type="button" onClick={onClickBtn("진")}>진</Jin>
-        <Vodka base={base} type="button" onClick={onClickBtn("보드카")}>보드카</Vodka>
-        <Rum base={base} type="button" onClick={onClickBtn("럼")}>럼</Rum>
-        <Whiskey base={base} type="button" onClick={onClickBtn("위스키")}>위스키</Whiskey>
-        <Tequila base={base} type="button" onClick={onClickBtn("데킬라")}>데킬라</Tequila>
-        <Brandy base={base} type="button" onClick={onClickBtn("브랜디")}>브랜디</Brandy>
-        <Liqueur base={base} type="button" onClick={onClickBtn("리큐어")}>리큐어</Liqueur>
-        <Else base={base} type="button" onClick={onClickBtn("기타")}>기타</Else>
+        <All base={base} type="button" onClick={onClickBtn("전체")}>
+          전체
+        </All>
+        <Jin base={base} type="button" onClick={onClickBtn("진")}>
+          진
+        </Jin>
+        <Vodka base={base} type="button" onClick={onClickBtn("보드카")}>
+          보드카
+        </Vodka>
+        <Rum base={base} type="button" onClick={onClickBtn("럼")}>
+          럼
+        </Rum>
+        <Whiskey base={base} type="button" onClick={onClickBtn("위스키")}>
+          위스키
+        </Whiskey>
+        <Tequila base={base} type="button" onClick={onClickBtn("데킬라")}>
+          데킬라
+        </Tequila>
+        <Brandy base={base} type="button" onClick={onClickBtn("브랜디")}>
+          브랜디
+        </Brandy>
+        <Liqueur base={base} type="button" onClick={onClickBtn("리큐어")}>
+          리큐어
+        </Liqueur>
+        <Else base={base} type="button" onClick={onClickBtn("기타")}>
+          기타
+        </Else>
       </ButtonGrid>
     </Container>
   );

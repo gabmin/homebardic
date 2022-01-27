@@ -37,7 +37,7 @@ DB.connect((err) => {
 });
 
 //모든 데이터 불러오기
-app.get("/", (req, res) => {
+app.get("/cocktail/cards", (req, res) => {
   DB.query("SELECT * FROM card", function (error, results, fields) {
     if (!error) {
       res.send(results);

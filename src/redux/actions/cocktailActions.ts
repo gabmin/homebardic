@@ -6,6 +6,7 @@ export const CocktailDB = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const response = await api.get(`/cocktail/cards`);
+      console.log(response);
       return response.data;
     } catch (err) {
       console.log(err);
