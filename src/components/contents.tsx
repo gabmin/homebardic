@@ -39,9 +39,9 @@ const Contents: FunctionComponent = () => {
         <Liqueur base={base} type="button" onClick={onClickBtn("리큐어")}>
           리큐어
         </Liqueur>
-        <Else base={base} type="button" onClick={onClickBtn("기타")}>
+        <Others base={base} type="button" onClick={onClickBtn("기타")}>
           기타
-        </Else>
+        </Others>
       </ButtonGrid>
     </Container>
   );
@@ -179,7 +179,7 @@ const Liqueur = styled.button<{ base: string }>`
   color: #fff;
 `;
 
-const Else = styled.button<{ base: string }>`
+const Others = styled.button<{ base: string }>`
   width: 150px;
   height: 50px;
   background-color: ${(props) =>

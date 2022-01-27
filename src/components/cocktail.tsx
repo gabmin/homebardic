@@ -4,7 +4,6 @@ import { CoktailInfo } from "../types";
 import styled from "styled-components";
 
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
-  console.log("카드", data);
   const ingredient = data.ingredient.split(",");
   return (
     <Container>
@@ -21,7 +20,10 @@ const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
         </Ingredient>
         <Content>용법 : {data.method}</Content>
         <Content>글라스: {data.glass}</Content>
-        <Content>설명: {data.description}</Content>
+        <DescGrid>
+          <DescTitle>설명: </DescTitle>
+          <Desc>{data.description}</Desc>
+        </DescGrid>
       </ContentsGrid>
     </Container>
   );
@@ -33,7 +35,7 @@ const Container = styled.div`
   width: 291px;
   height: 100%;
   margin: 20px;
-  background-color: red;
+  background-color: #b6e4e5;
   border: 2px solid #245079;
   border-radius: 10px;
   padding: 10px;
@@ -62,4 +64,15 @@ const IngreTitle = styled.div`
 `;
 const Index = styled.div`
   margin: 5px 0px;
+`;
+
+const DescGrid = styled.div`
+  display: flex;
+`;
+const DescTitle = styled.div`
+  width: 40px;
+  margin: 5px;
+`;
+const Desc = styled.div`
+  width: 90%;
 `;
