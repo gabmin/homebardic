@@ -1,18 +1,25 @@
 import * as React from "react";
+import { FunctionComponent, useState } from "react";
 import styled from "styled-components";
 
-const Contents = () => {
+const Contents: FunctionComponent = () => {
+  const [base, setBase] = useState("진");
+
+  const onClickBtn = (props:string) => () => {
+    setBase(`${props}`)
+  }
   return (
     <Container>
       <ButtonGrid>
-        <Test type="button">진</Test>
-        <Button type="button">보드카</Button>
-        <Button type="button">럼</Button>
-        <Button type="button">위스키</Button>
-        <Button type="button">데킬라</Button>
-        <Button type="button">브랜디</Button>
-        <Button type="button">리큐어</Button>
-        <Button type="button">기타</Button>
+        <All base={base} type="button" onClick={onClickBtn("전체")}>전체</All>
+        <Jin base={base} type="button" onClick={onClickBtn("진")}>진</Jin>
+        <Vodka base={base} type="button" onClick={onClickBtn("보드카")}>보드카</Vodka>
+        <Rum base={base} type="button" onClick={onClickBtn("럼")}>럼</Rum>
+        <Whiskey base={base} type="button" onClick={onClickBtn("위스키")}>위스키</Whiskey>
+        <Tequila base={base} type="button" onClick={onClickBtn("데킬라")}>데킬라</Tequila>
+        <Brandy base={base} type="button" onClick={onClickBtn("브랜디")}>브랜디</Brandy>
+        <Liqueur base={base} type="button" onClick={onClickBtn("리큐어")}>리큐어</Liqueur>
+        <Else base={base} type="button" onClick={onClickBtn("기타")}>기타</Else>
       </ButtonGrid>
     </Container>
   );
@@ -33,23 +40,134 @@ const ButtonGrid = styled.div`
   margin: auto;
 `;
 
-const Button = styled.button`
+const All = styled.button<{ base: string }>`
   width: 150px;
   height: 50px;
-  background-color: transparent;
-  border: none;
+  background-color: ${(props) =>
+    props.base === "전체" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "전체" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "전체" ? "15px" : "none"};
+  border: ${(props) => (props.base === "전체" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+`;
+const Jin = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "진" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) => (props.base === "진" ? "15px" : "none")};
+  border-top-right-radius: ${(props) =>
+    props.base === "진" ? "15px" : "none"};
+  border: ${(props) => (props.base === "진" ? "1px #70aabb" : "none")};
   font-size: 20px;
   cursor: pointer;
   color: #fff;
 `;
 
-const Test = styled.button`
+const Vodka = styled.button<{ base: string }>`
   width: 150px;
   height: 50px;
-  color: #fff;
+  background-color: ${(props) =>
+    props.base === "보드카" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "보드카" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "보드카" ? "15px" : "none"};
+  border: ${(props) => (props.base === "보드카" ? "1px #70aabb" : "none")};
   font-size: 20px;
-  border: 1px #70aabb;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  background-color: #70aabb;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const Rum = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "럼" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) => (props.base === "럼" ? "15px" : "none")};
+  border-top-right-radius: ${(props) =>
+    props.base === "럼" ? "15px" : "none"};
+  border: ${(props) => (props.base === "럼" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const Whiskey = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "위스키" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "위스키" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "위스키" ? "15px" : "none"};
+  border: ${(props) => (props.base === "위스키" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const Tequila = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "데킬라" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "데킬라" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "데킬라" ? "15px" : "none"};
+  border: ${(props) => (props.base === "데킬라" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const Brandy = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "브랜디" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "브랜디" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "브랜디" ? "15px" : "none"};
+  border: ${(props) => (props.base === "브랜디" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const Liqueur = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "리큐어" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "리큐어" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "리큐어" ? "15px" : "none"};
+  border: ${(props) => (props.base === "리큐어" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const Else = styled.button<{ base: string }>`
+  width: 150px;
+  height: 50px;
+  background-color: ${(props) =>
+    props.base === "기타" ? "#70aabb" : "transparent"};
+  border-top-left-radius: ${(props) =>
+    props.base === "기타" ? "15px" : "none"};
+  border-top-right-radius: ${(props) =>
+    props.base === "기타" ? "15px" : "none"};
+  border: ${(props) => (props.base === "기타" ? "1px #70aabb" : "none")};
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
 `;
