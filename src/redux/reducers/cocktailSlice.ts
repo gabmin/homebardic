@@ -4,15 +4,8 @@ import type { RootState } from "../store";
 import { CoktailInfo } from "../../types";
 import { CocktailDB } from "../actions/cocktailActions";
 
-const initialState: CoktailInfo = {
-  card: {
-    name: "",
-    base: "",
-    ingredient: [],
-    method: "",
-    glass: "",
-    description: "",
-  },
+const initialState = {
+  manual: [],
 };
 
 const cocktailSlice = createSlice({
@@ -21,8 +14,8 @@ const cocktailSlice = createSlice({
   reducers: {},
   extraReducers: (builder) =>
     builder
-      .addCase(CocktailDB.fulfilled, (state, { payload }) => {
-        state.card = payload;
+      .addCase(CocktailDB.fulfilled, (state, action) => {
+        state.manual = action.payload;
       })
       .addCase(CocktailDB.rejected, (state, action) => {
         console.log(action.error);

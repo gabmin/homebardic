@@ -8,23 +8,25 @@ import styled from "styled-components";
 
 const Card = () => {
   const { baseState } = useAppSelector((state) => state.base);
-  const { card } = useAppSelector((state) => state.card);
-  console.log(card);
-  //   const data = {
-  //     card: {
-  //       name: "스크루드라이버",
-  //       base: "보드카 45ml",
-  //       ingredient: ["오렌지주스 fill up"],
-  //       method: "빌드",
-  //       glass: "롱드링크 잔",
-  //       description: "도수 약 13도 정도의 가볍게 먹기 좋은 술이다.",
-  //     },
-  //   };
-  if (baseState === "전체") {
-  }
+  const cards = useAppSelector((state) => state.card);
+  console.log(cards.manual);
+
+  const test = {
+    base: "보드카 45ml",
+    description: "도수 약 13도 정도의 가볍게 먹기 좋은 술이다.",
+    glass: "롱드링크글라스",
+    id: 2,
+    ingredient: "오렌지주스 fill up",
+    method: "빌드",
+    name: "스크류드라이버",
+  };
   return (
     <Container>
-      <Grid>{/* <Coktail data={data} /> */}</Grid>
+      <Grid>
+        {cards.manual.map((v, i) => (
+          <Coktail key={i} data={v} />
+        ))}
+      </Grid>
     </Container>
   );
 };

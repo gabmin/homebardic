@@ -4,15 +4,24 @@ import { CoktailInfo } from "../types";
 import styled from "styled-components";
 
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
+  console.log("카드", data);
+  const ingredient = data.ingredient.split(",");
   return (
     <Container>
-      <Title>{data.card.name}</Title>
+      <Title>{data.name}</Title>
       <ContentsGrid>
-        <Content>기주 : {data.card.base}</Content>
-        <Content>재료 : {data.card.ingredient}</Content>
-        <Content>용법 : {data.card.method}</Content>
-        <Content>잔: {data.card.glass}</Content>
-        <Content>설명: {data.card.description}</Content>
+        <Content>기주 : {data.base}</Content>
+        <Ingredient>
+          <IngreTitle>재료 :</IngreTitle>
+          <div>
+            {ingredient.map((e) => (
+              <Index>{e}</Index>
+            ))}
+          </div>
+        </Ingredient>
+        <Content>용법 : {data.method}</Content>
+        <Content>글라스: {data.glass}</Content>
+        <Content>설명: {data.description}</Content>
       </ContentsGrid>
     </Container>
   );
@@ -42,4 +51,15 @@ const ContentsGrid = styled.div`
 `;
 const Content = styled.div`
   margin: 5px;
+`;
+
+const Ingredient = styled.div`
+  display: flex;
+`;
+
+const IngreTitle = styled.div`
+  margin: 5px;
+`;
+const Index = styled.div`
+  margin: 5px 0px;
 `;

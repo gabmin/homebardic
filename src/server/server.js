@@ -6,6 +6,9 @@ const app = express();
 //환경변수 적용
 require("dotenv").config({ path: "../../.env" });
 
+//CROS 설정
+app.use(cors());
+
 //parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,9 +19,6 @@ const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Start Server : localhost:${port}`);
 });
-
-//CROS 설정
-app.use(cors());
 
 //mysql 접속 (환경변수 적용)
 const DB = mysql.createConnection({
@@ -38,6 +38,7 @@ DB.connect((err) => {
 
 //모든 데이터 불러오기
 app.get("/cocktail/cards", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   DB.query("SELECT * FROM card", function (error, results, fields) {
     if (!error) {
       res.send(results);
