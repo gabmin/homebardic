@@ -1,16 +1,22 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect } from "react";
+import { CocktailDB, VodkaDB } from "../redux/actions/cocktailActions";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import Header from "../components/header";
 import Contents from "../components/contents";
-import Jin from "../components/jin";
+import Card from "../components/card";
 
 const Main = () => {
-  const [base, setBase] = useState("진");
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(CocktailDB());
+    dispatch(VodkaDB());
+  }, []);
   return (
     <>
       <Header />
       <Contents />
-      {base === "진" ? <Jin /> : null}
+      <Card />
     </>
   );
 };

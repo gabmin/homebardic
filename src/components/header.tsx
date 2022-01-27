@@ -1,13 +1,21 @@
 import * as React from "react";
+import { useState } from "react";
+import Modal from "../components/modal";
 import styled from "styled-components";
 import logo from "../images/logo.png";
 
 const Header = () => {
+  const [modal, setModal] = useState(false);
+  const openModal = () => {
+    setModal(true);
+  };
   return (
     <Container>
       <ImageGrid>
         <Image src={logo} />
       </ImageGrid>
+      <WriteBtn onClick={openModal}>작성하기</WriteBtn>
+      {modal ? <Modal /> : null}
     </Container>
   );
 };
@@ -28,4 +36,17 @@ const Image = styled.img`
 
 const ImageGrid = styled.div`
   text-align: center;
+`;
+
+const WriteBtn = styled.button`
+  width: 150px;
+  height: 40px;
+  font-size: 15px;
+  color: #fff;
+  background-color: #70aabb;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  top: 60px;
+  right: 60px;
 `;

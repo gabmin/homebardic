@@ -4,15 +4,26 @@ import { CoktailInfo } from "../types";
 import styled from "styled-components";
 
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
+  const ingredient = data.ingredient.split(",");
   return (
     <Container>
-      <Title>{data.card.name}</Title>
+      <Title>{data.name}</Title>
       <ContentsGrid>
-        <Content>기주 : {data.card.base}</Content>
-        <Content>재료 : {data.card.ingredient}</Content>
-        <Content>용법 : {data.card.method}</Content>
-        <Content>잔: {data.card.glass}</Content>
-        <Content>설명: {data.card.description}</Content>
+        <Content>기주 : {data.base}</Content>
+        <Ingredient>
+          <IngreTitle>재료 :</IngreTitle>
+          <div>
+            {ingredient.map((e) => (
+              <Index>{e}</Index>
+            ))}
+          </div>
+        </Ingredient>
+        <Content>용법 : {data.method}</Content>
+        <Content>글라스: {data.glass}</Content>
+        <DescGrid>
+          <DescTitle>설명: </DescTitle>
+          <Desc>{data.description}</Desc>
+        </DescGrid>
       </ContentsGrid>
     </Container>
   );
@@ -24,7 +35,7 @@ const Container = styled.div`
   width: 291px;
   height: 100%;
   margin: 20px;
-  background-color: red;
+  background-color: #b6e4e5;
   border: 2px solid #245079;
   border-radius: 10px;
   padding: 10px;
@@ -42,4 +53,26 @@ const ContentsGrid = styled.div`
 `;
 const Content = styled.div`
   margin: 5px;
+`;
+
+const Ingredient = styled.div`
+  display: flex;
+`;
+
+const IngreTitle = styled.div`
+  margin: 5px;
+`;
+const Index = styled.div`
+  margin: 5px 0px;
+`;
+
+const DescGrid = styled.div`
+  display: flex;
+`;
+const DescTitle = styled.div`
+  width: 40px;
+  margin: 5px;
+`;
+const Desc = styled.div`
+  width: 90%;
 `;
