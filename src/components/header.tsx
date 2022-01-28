@@ -1,13 +1,16 @@
 import * as React from "react";
 import { useState } from "react";
 import Modal from "../components/modal";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { selectedModal } from "../redux/reducers/modal";
 import styled from "styled-components";
 import logo from "../images/logo.png";
 
 const Header = () => {
-  const [modal, setModal] = useState(false);
+  const dispatch = useAppDispatch();
+  const { modalState } = useAppSelector((state) => state.modal);
   const openModal = () => {
-    setModal(true);
+    dispatch(selectedModal(true));
   };
   return (
     <Container>
@@ -15,7 +18,7 @@ const Header = () => {
         <Image src={logo} />
       </ImageGrid>
       <WriteBtn onClick={openModal}>작성하기</WriteBtn>
-      {modal ? <Modal /> : null}
+      {modalState ? <Modal /> : null}
     </Container>
   );
 };
