@@ -179,3 +179,28 @@ app.delete("/cocktail/cards/:id", (req, res) => {
     res.send(result);
   });
 });
+
+// 수정하기
+app.put("/cocktail/cards/:id", (req, res) => {
+  const name = req.body.name;
+  const base = req.body.base;
+  const ingredient = req.body.ingredient;
+  const method = req.body.method;
+  const glass = req.body.glass;
+  const description = req.body.description;
+  const id = req.body.id;
+
+  const sql =
+    "UPDATE card SET name=?, base=?, ingredient=?, method=?, glass=?, description=? WHERE id=?";
+  DB.query(
+    sql,
+    [name, base, ingredient, method, glass, description, id],
+    function (err, result, field) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+      }
+      res.send(result);
+    }
+  );
+});

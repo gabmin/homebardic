@@ -126,3 +126,16 @@ export const deleteCardDB = createAsyncThunk(
     }
   }
 );
+
+// 수정하기
+export const editCardDB = createAsyncThunk(
+  "cocktail/cards/",
+  async (data: CoktailInfo) => {
+    try {
+      const response = await api.put(`cocktail/cards/${data.id}`, data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
