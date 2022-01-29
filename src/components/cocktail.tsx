@@ -1,13 +1,35 @@
 import * as React from "react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { deleteCardDB } from "../redux/actions/cocktailActions";
 import { CoktailInfo } from "../types";
+import Edit from "./edit";
 import styled from "styled-components";
 
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
   const ingredient = data.ingredient.split(",");
+  const dispatch = useAppDispatch();
+  const [show, setShow] = useState(false);
+
+  //수정하기
+  const onClickEdit = () => {
+    setShow(!show);
+  };
+
+  // 삭제하기
+  const onClickDelete = () => {
+    const deleteConfirm = window.confirm("삭제 하시겠습니까??");
+    if (deleteConfirm) {
+      dispatch(deleteCardDB(data.id!));
+      alert("삭제 되었습니다.");
+    }
+  };
+
   return (
     <Container>
       <Title>{data.name}</Title>
+      <EditBtn onClick={onClickEdit}>수정</EditBtn>
+      <DeleteBtn onClick={onClickDelete}>삭제</DeleteBtn>
       <ContentsGrid>
         <Content>기주 : {data.base}</Content>
         <Ingredient>
@@ -25,6 +47,7 @@ const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
           <Desc>{data.description}</Desc>
         </DescGrid>
       </ContentsGrid>
+      {show ? <Edit data={data} btn={onClickEdit} /> : null}
     </Container>
   );
 };
@@ -39,6 +62,7 @@ const Container = styled.div`
   border: 2px solid #245079;
   border-radius: 10px;
   padding: 10px;
+  position: relative;
 `;
 
 const Title = styled.div`
@@ -46,7 +70,29 @@ const Title = styled.div`
   font-weight: bold;
   margin: 10px;
 `;
+const EditBtn = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 60px;
+  border: 1px solid #245079;
+  border-radius: 10px;
+  background-color: #245079;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+`;
 
+const DeleteBtn = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 1px solid #245079;
+  border-radius: 10px;
+  background-color: #245079;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+`;
 const ContentsGrid = styled.div`
   display: flex;
   flex-direction: column;

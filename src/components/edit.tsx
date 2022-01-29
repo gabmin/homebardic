@@ -1,25 +1,27 @@
 import * as React from "react";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, FunctionComponent } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../redux/hooks";
 import { selectedModal } from "../redux/reducers/modal";
-import { addCardDB } from "../redux/actions/cocktailActions";
+import { editCardDB } from "../redux/actions/cocktailActions";
+import { CoktailInfo } from "../types";
 
-const Modal = () => {
+const Edit: FunctionComponent<{ data: CoktailInfo; btn: () => void }> = ({
+  data,
+  btn,
+}) => {
   const dispatch = useAppDispatch();
 
-  const [save, setSave] = useState(false);
-  const [name, setName] = useState("");
-  const [base, setBase] = useState("");
-  const [ingredient, setIngredinent] = useState("");
-  const [method, setMethod] = useState("");
-  const [glass, setGlass] = useState("");
-  const [desc, setDesc] = useState("");
+  const [name, setName] = useState(data.name);
+  const [base, setBase] = useState(data.base);
+  const [ingredient, setIngredinent] = useState(data.ingredient);
+  const [method, setMethod] = useState(data.method);
+  const [glass, setGlass] = useState(data.glass);
+  const [desc, setDesc] = useState(data.description);
 
-  useEffect(() => {}, []);
   // 닫기 버튼
   const closeBtn = () => {
-    dispatch(selectedModal(false));
+    btn();
   };
 
   // 칵테일 이름
@@ -58,9 +60,10 @@ const Modal = () => {
     setDesc(e.currentTarget.value);
   }, []);
 
-  // 저장하기
+  // 수정하기
   const onClickBtn = () => {
-    const data = {
+    const card = {
+      id: data.id,
       name: name,
       base: base,
       ingredient: ingredient,
@@ -69,9 +72,9 @@ const Modal = () => {
       description: desc,
     };
 
-    dispatch(addCardDB(data));
-    alert("저장이 완료되었습니다!!");
-    dispatch(selectedModal(false));
+    dispatch(editCardDB(card));
+    alert("수정 되었습니다!!");
+    btn();
   };
 
   return (
@@ -105,13 +108,13 @@ const Modal = () => {
             <Textarea value={desc} onChange={onChangeDesc} />
           </ContentsGrid>
         </Container>
-        <Button onClick={onClickBtn}>저장하기</Button>
+        <Button onClick={onClickBtn}>수정하기</Button>
       </ModalContainer>
     </Background>
   );
 };
 
-export default Modal;
+export default Edit;
 
 const Background = styled.div`
   position: fixed;

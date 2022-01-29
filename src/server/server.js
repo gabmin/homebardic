@@ -105,7 +105,6 @@ app.get("/cocktail/cards/whiskey", (req, res) => {
     function (error, results, fields) {
       if (!error) {
         res.send(results);
-        console.log(results);
       } else {
         console.log(error);
       }
@@ -141,6 +140,67 @@ app.get("/cocktail/cards/tequila", (req, res) => {
       } else {
         console.log(error);
       }
+    }
+  );
+});
+
+// 추가하기
+app.post("/cocktail/cards", (req, res) => {
+  const name = req.body.name;
+  const base = req.body.base;
+  const ingredient = req.body.ingredient;
+  const method = req.body.method;
+  const glass = req.body.glass;
+  const description = req.body.description;
+
+  const sql =
+    "INSERT INTO card (name, base, ingredient, method, glass, description) VALUES (?, ?, ?, ?, ?, ?)";
+  DB.query(
+    sql,
+    [name, base, ingredient, method, glass, description],
+    function (err, result, field) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+      }
+      res.send(result);
+    }
+  );
+});
+
+// 삭제하기
+app.delete("/cocktail/cards/:id", (req, res) => {
+  const sql = "DElETE FROM card WHERE id = ?";
+  DB.query(sql, [req.params.id], function (err, result, field) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+    }
+    res.send(result);
+  });
+});
+
+// 수정하기
+app.put("/cocktail/cards/:id", (req, res) => {
+  const name = req.body.name;
+  const base = req.body.base;
+  const ingredient = req.body.ingredient;
+  const method = req.body.method;
+  const glass = req.body.glass;
+  const description = req.body.description;
+  const id = req.body.id;
+
+  const sql =
+    "UPDATE card SET name=?, base=?, ingredient=?, method=?, glass=?, description=? WHERE id=?";
+  DB.query(
+    sql,
+    [name, base, ingredient, method, glass, description, id],
+    function (err, result, field) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+      }
+      res.send(result);
     }
   );
 });

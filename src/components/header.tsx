@@ -52,4 +52,5 @@ const WriteBtn = styled.button`
   position: absolute;
   top: 60px;
   right: 60px;
+  cursor: pointer;
 `;
