@@ -1,56 +1,117 @@
 import * as React from "react";
+import { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../redux/hooks";
 import { selectedModal } from "../redux/reducers/modal";
+import { addCardDB } from "../redux/actions/cocktailActions";
 
 const Modal = () => {
   const dispatch = useAppDispatch();
+
+  const [save, setSave] = useState(false);
+  const [name, setName] = useState("");
+  const [base, setBase] = useState("");
+  const [ingredient, setIngredinent] = useState("");
+  const [method, setMethod] = useState("");
+  const [glass, setGlass] = useState("");
+  const [desc, setDesc] = useState("");
+
+  useEffect(() => {}, []);
+  // 닫기 버튼
   const closeBtn = () => {
     dispatch(selectedModal(false));
   };
+
+  // 칵테일 이름
+  const onChangeName = useCallback((e) => {
+    e.preventDefault();
+    setName(e.currentTarget.value);
+  }, []);
+
+  // 기주
+  const onChangeBase = useCallback((e) => {
+    e.preventDefault();
+    setBase(e.currentTarget.value);
+  }, []);
+
+  //재료
+  const onChangeIngredients = useCallback((e) => {
+    e.preventDefault();
+    setIngredinent(e.currentTarget.value);
+  }, []);
+
+  //기법
+  const onChangeMethod = useCallback((e) => {
+    e.preventDefault();
+    setMethod(e.currentTarget.value);
+  }, []);
+
+  //글라스
+  const onChangeGlass = useCallback((e) => {
+    e.preventDefault();
+    setGlass(e.currentTarget.value);
+  }, []);
+
+  //설명
+  const onChangeDesc = useCallback((e) => {
+    e.preventDefault();
+    setDesc(e.currentTarget.value);
+  }, []);
+
+  // 저장하기
+  const onClickBtn = () => {
+    const data = {
+      name: name,
+      base: base,
+      ingredient: ingredient,
+      method: method,
+      glass: glass,
+      description: desc,
+    };
+
+    dispatch(addCardDB(data));
+    setName("");
+    setBase("");
+    setIngredinent("");
+    setMethod("");
+    setGlass("");
+    setDesc("");
+    alert("저장이 완료되었습니다!!");
+    dispatch(selectedModal(false));
+  };
+
   return (
     <Background onClick={closeBtn}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
         <CloseBtn onClick={closeBtn}>X</CloseBtn>
-        <h1>칵테일 레시피 추가하기</h1>
+        <Title>칵테일 레시피 추가하기</Title>
         <Container>
           <ContentsGrid>
             <TitleGrid>칵테일 이름</TitleGrid>
-            <Input type="text"></Input>
+            <Input type="text" value={name} onChange={onChangeName}></Input>
           </ContentsGrid>
           <ContentsGrid>
             <TitleGrid>기주</TitleGrid>
-            <div>
-              <Dropdown name="base">
-                <option value="jin">진</option>
-                <option value="vodka">보드카</option>
-                <option value="rum">럼</option>
-                <option value="whiskey">위스키</option>
-                <option value="tequila">데킬라</option>
-                <option value="brandy">브랜디</option>
-                <option value="liqueur">리큐어</option>
-                <option value="others">기타</option>
-              </Dropdown>
-              용량 : <input></input>
-            </div>
+            <Input type="text" value={base} onChange={onChangeBase}></Input>
           </ContentsGrid>
           <ContentsGrid>
             <TitleGrid>재료</TitleGrid>
-            <Input type="text"></Input>
+            <Textarea value={ingredient} onChange={onChangeIngredients} />
           </ContentsGrid>
           <ContentsGrid>
             <TitleGrid>기법</TitleGrid>
-            <Input type="text"></Input>
+            <Input type="text" value={method} onChange={onChangeMethod}></Input>
           </ContentsGrid>
           <ContentsGrid>
             <TitleGrid>글라스</TitleGrid>
-            <Input type="text"></Input>
+            <Input type="text" value={glass} onChange={onChangeGlass}></Input>
           </ContentsGrid>
           <ContentsGrid>
             <TitleGrid>설명</TitleGrid>
-            <textarea></textarea>
+            <Textarea value={desc} onChange={onChangeDesc} />
           </ContentsGrid>
         </Container>
+        <Button onClick={onClickBtn}>저장하기</Button>
       </ModalContainer>
     </Background>
   );
@@ -73,12 +134,14 @@ const ModalContainer = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 60vw;
-  height: 80%;
+  height: 90%;
   padding: 16px;
   background: #515c81;
   border-radius: 10px;
   opacity: 1;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CloseBtn = styled.button`
@@ -94,9 +157,14 @@ const CloseBtn = styled.button`
 
 const Container = styled.div`
   width: 70%;
-  background-color: red;
-  margin: 50px auto;
+  border-radius: 10px;
+  background-color: #608d9b;
+  margin: 30px auto 0px auto;
   display: inline-block;
+`;
+
+const Title = styled.h1`
+  color: #fff;
 `;
 
 const TitleGrid = styled.div`
@@ -104,18 +172,39 @@ const TitleGrid = styled.div`
   text-align: center;
   font-size: 20px;
   color: #fff;
+  font-weight: bold;
 `;
 
 const ContentsGrid = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 40px 0px;
+  margin: 30px 0px;
 `;
 
 const Input = styled.input`
-  width: 200px;
+  width: 60%;
+  border: none;
+  height: 25px;
+  border-radius: 7px;
+  padding: 5px;
 `;
 
-const Dropdown = styled.select`
-  width: 100px;
+const Textarea = styled.textarea`
+  width: 60%;
+  height: 100px;
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
+`;
+
+const Button = styled.button`
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #608d9b;
+  margin: auto;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
 `;

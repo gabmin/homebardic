@@ -12,6 +12,7 @@ import {
   BrandyDB,
   LiqueurDB,
   OthersDB,
+  addCardDB,
 } from "../actions/cocktailActions";
 
 const initialState = {
@@ -84,6 +85,12 @@ const cocktailSlice = createSlice({
         state.others = action.payload;
       })
       .addCase(OthersDB.rejected, (state, action) => {
+        console.log(action.error);
+      })
+      .addCase(addCardDB.fulfilled, (state, action) => {
+        console.log(state);
+      })
+      .addCase(addCardDB.rejected, (state, action) => {
         console.log(action.error);
       }),
 });

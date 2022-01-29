@@ -105,7 +105,6 @@ app.get("/cocktail/cards/whiskey", (req, res) => {
     function (error, results, fields) {
       if (!error) {
         res.send(results);
-        console.log(results);
       } else {
         console.log(error);
       }
@@ -141,6 +140,30 @@ app.get("/cocktail/cards/tequila", (req, res) => {
       } else {
         console.log(error);
       }
+    }
+  );
+});
+
+// 추가하기
+app.post("/cocktail/cards", (req, res) => {
+  const name = req.body.name;
+  const base = req.body.base;
+  const ingredient = req.body.ingredient;
+  const method = req.body.method;
+  const glass = req.body.glass;
+  const description = req.body.description;
+
+  const sql =
+    "INSERT INTO card (name, base, ingredient, method, glass, description) VALUES (?, ?, ?, ?, ?, ?)";
+  DB.query(
+    sql,
+    [name, base, ingredient, method, glass, description],
+    function (err, result, field) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+      }
+      res.send(result);
     }
   );
 });
