@@ -101,12 +101,25 @@ export const OthersDB = createAsyncThunk("cocktail/cards/others", async () => {
   }
 });
 
-// 작성 하기
+// 작성하기
 export const addCardDB = createAsyncThunk(
   "cocktail/cards/",
   async (data: CoktailInfo) => {
     try {
       const response = await api.post(`/cocktail/cards`, data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
+// 삭제하기
+export const deleteCardDB = createAsyncThunk(
+  "cocktail/cards/",
+  async (id: number) => {
+    try {
+      const response = await api.delete(`/cocktail/cards/${id}`);
       return response.data;
     } catch (err) {
       console.log(err);

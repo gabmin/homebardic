@@ -167,3 +167,15 @@ app.post("/cocktail/cards", (req, res) => {
     }
   );
 });
+
+// 삭제하기
+app.delete("/cocktail/cards/:id", (req, res) => {
+  const sql = "DElETE FROM card WHERE id = ?";
+  DB.query(sql, [req.params.id], function (err, result, field) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+    }
+    res.send(result);
+  });
+});

@@ -5,4 +5,5 @@ export interface CoktailInfo {
   method: string;
   glass: string;
   description: string;
+  id?: number;
 }
