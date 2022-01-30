@@ -75,6 +75,7 @@ const Edit: FunctionComponent<{ data: CoktailInfo; btn: () => void }> = ({
     dispatch(editCardDB(card));
     alert("수정 되었습니다!!");
     btn();
+    window.location.replace("/");
   };
 
   return (

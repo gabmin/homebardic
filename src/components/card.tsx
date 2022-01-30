@@ -1,16 +1,21 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
-import Coktail from "./cocktail";
+import Cocktail from "./cocktail";
+import { CoktailInfo } from "../types";
 
 import styled from "styled-components";
 
 const Card = () => {
   const { baseState } = useAppSelector((state) => state.base);
+
   let cards;
 
   if (baseState === "전체") {
     cards = useAppSelector((state) => state.card).all;
+  }
+  if (baseState === "진") {
+    cards = useAppSelector((state) => state.card).jin;
   }
   if (baseState === "보드카") {
     cards = useAppSelector((state) => state.card).vodka;
@@ -24,6 +29,9 @@ const Card = () => {
   if (baseState === "데킬라") {
     cards = useAppSelector((state) => state.card).tequila;
   }
+  if (baseState === "브랜디") {
+    cards = useAppSelector((state) => state.card).brandy;
+  }
   if (baseState === "리큐어") {
     cards = useAppSelector((state) => state.card).liqueur;
   }
@@ -34,7 +42,10 @@ const Card = () => {
   return (
     <Container>
       <Grid>
-        {cards && cards.map((v, i) => <Coktail key={i + v} data={v} />)}
+        {cards &&
+          cards.map((v: CoktailInfo, i: number) => (
+            <Cocktail key={v.id! + i} data={v} />
+          ))}
       </Grid>
     </Container>
   );

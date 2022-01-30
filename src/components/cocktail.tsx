@@ -22,6 +22,7 @@ const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
     if (deleteConfirm) {
       dispatch(deleteCardDB(data.id!));
       alert("삭제 되었습니다.");
+      window.location.replace("/");
     }
   };
 
@@ -35,8 +36,8 @@ const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
         <Ingredient>
           <IngreTitle>재료 :</IngreTitle>
           <div>
-            {ingredient.map((e) => (
-              <Index>{e}</Index>
+            {ingredient.map((e: string, i: number) => (
+              <Index key={e + i}>{e}</Index>
             ))}
           </div>
         </Ingredient>
