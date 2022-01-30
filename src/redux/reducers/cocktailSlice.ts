@@ -86,12 +86,6 @@ const cocktailSlice = createSlice({
       })
       .addCase(OthersDB.rejected, (state, action) => {
         console.log(action.error);
-      })
-      .addCase(addCardDB.fulfilled, (state, action) => {
-        console.log(state);
-      })
-      .addCase(addCardDB.rejected, (state, action) => {
-        console.log(action.error);
       }),
 });
 

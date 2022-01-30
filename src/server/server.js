@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
+const crypto = require("crypto");
 const app = express();
 
 //환경변수 적용
@@ -27,6 +28,7 @@ const DB = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 });
+
 //mysql 연결
 DB.connect((err) => {
   if (!err) {
@@ -51,7 +53,6 @@ app.get("/cocktail/cards", (req, res) => {
 
 // 진 데이터 가져오기
 app.get("/cocktail/cards/jin", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   DB.query(
     `SELECT * FROM card WHERE base LIKE "%진%"`,
     function (error, results, fields) {
@@ -67,7 +68,6 @@ app.get("/cocktail/cards/jin", (req, res) => {
 
 // 보드카 데이터 가져오기
 app.get("/cocktail/cards/vodka", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   DB.query(
     `SELECT * FROM card WHERE base LIKE "%보드카%"`,
     function (error, results, fields) {
@@ -83,9 +83,8 @@ app.get("/cocktail/cards/vodka", (req, res) => {
 
 // 럼 데이터 가져오기
 app.get("/cocktail/cards/rum", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   DB.query(
-    `SELECT * FROM card WHERE base LIKE "%rum%"`,
+    `SELECT * FROM card WHERE base LIKE "%럼%"`,
     function (error, results, fields) {
       if (!error) {
         res.send(results);
@@ -101,7 +100,7 @@ app.get("/cocktail/cards/rum", (req, res) => {
 app.get("/cocktail/cards/whiskey", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   DB.query(
-    `SELECT * FROM card WHERE base LIKE "%whiskey%"`,
+    `SELECT * FROM card WHERE base LIKE "%위스키%"`,
     function (error, results, fields) {
       if (!error) {
         res.send(results);
@@ -114,9 +113,8 @@ app.get("/cocktail/cards/whiskey", (req, res) => {
 
 // 데킬라 데이터 가져오기
 app.get("/cocktail/cards/tequila", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   DB.query(
-    `SELECT * FROM card WHERE base LIKE "%tequila%"`,
+    `SELECT * FROM card WHERE base LIKE "%데킬라%"`,
     function (error, results, fields) {
       if (!error) {
         res.send(results);
@@ -128,11 +126,55 @@ app.get("/cocktail/cards/tequila", (req, res) => {
   );
 });
 
-// 데킬라 데이터 가져오기
-app.get("/cocktail/cards/tequila", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
+// 브랜디 데이터 가져오기
+app.get("/cocktail/cards/brandy", (req, res) => {
   DB.query(
-    `SELECT * FROM card WHERE base LIKE "%tequila%"`,
+    `SELECT * FROM card WHERE base LIKE "%브랜디%"`,
+    function (error, results, fields) {
+      if (!error) {
+        res.send(results);
+        console.log(results);
+      } else {
+        console.log(error);
+      }
+    }
+  );
+});
+
+// 브랜디 데이터 가져오기
+app.get("/cocktail/cards/tequila", (req, res) => {
+  DB.query(
+    `SELECT * FROM card WHERE base LIKE "%브랜디%"`,
+    function (error, results, fields) {
+      if (!error) {
+        res.send(results);
+        console.log(results);
+      } else {
+        console.log(error);
+      }
+    }
+  );
+});
+
+// 리큐어 데이터 가져오기
+app.get("/cocktail/cards/liqueur", (req, res) => {
+  DB.query(
+    `SELECT * FROM card WHERE base LIKE "%리큐어%"`,
+    function (error, results, fields) {
+      if (!error) {
+        res.send(results);
+        console.log(results);
+      } else {
+        console.log(error);
+      }
+    }
+  );
+});
+
+// 리큐어 데이터 가져오기
+app.get("/cocktail/cards/others", (req, res) => {
+  DB.query(
+    `SELECT * FROM card WHERE base LIKE "%기타%"`,
     function (error, results, fields) {
       if (!error) {
         res.send(results);

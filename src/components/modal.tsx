@@ -72,6 +72,7 @@ const Modal = () => {
     dispatch(addCardDB(data));
     alert("저장이 완료되었습니다!!");
     dispatch(selectedModal(false));
+    window.location.replace("/");
   };
 
   return (
