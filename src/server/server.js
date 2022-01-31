@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const app = express();
 
 //환경변수 적용
@@ -79,12 +80,15 @@ app.post("/login", function (req, res) {
     }
 
     const user = results[0];
+    const token = jwt.sign({ id: id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "5d",
+    });
     crypto.pbkdf2(pwd, user.salt, 100000, 64, "sha512", (err, key) => {
       if (err) {
         console.log(err);
       }
       if (key.toString("base64") === user.password) {
-        return res.send("로그인 되었습니다.");
+        return res.send({ message: "success", token: token });
       } else {
         return res.send("비밀번호를 확인해 주세요.");
       }

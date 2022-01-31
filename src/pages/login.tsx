@@ -1,29 +1,63 @@
 import * as React from "react";
 import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { Cookies } from "react-cookie";
 import styled from "styled-components";
 import api from "../shared/axios";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
 
+  // 아이디
   const onChangeId = useCallback((e) => {
     e.preventDefault;
     setId(e.currentTarget.value);
   }, []);
 
+  // 비밀번호
   const onChangePwd = useCallback((e) => {
     e.preventDefault;
     setPwd(e.currentTarget.value);
   }, []);
 
+  // 로그인하기
   const login = () => {
+    const cookies = new Cookies();
     const data = { id: id, password: pwd };
-    api.post("/login", data);
+    api
+      .post("/login", data)
+      .then((res) => {
+        if (res.data.message === "success") {
+          cookies.set("token", res.data.token);
+          alert("로그인 되었습니다.");
+          navigate("/");
+        } else {
+          alert("로그인에 실패하였습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  // Enter키로 Button 이벤트 발생
+  const loginKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      login();
+    }
+  };
+
+  // 뒤로가기
+  const GoBack = () => {
+    navigate("/");
+  };
+  // admin 아이디 생성
   // const onClickbtn = () => {
   //   api.post("/signin");
   // };
+
   return (
     <Container>
       <LoginBox>
@@ -34,9 +68,17 @@ const Login = () => {
         </Id>
         <Password>
           <Tag> 비밀번호 :</Tag>
-          <Input type="password" value={pwd} onChange={onChangePwd}></Input>
+          <Input
+            type="password"
+            value={pwd}
+            onChange={onChangePwd}
+            onKeyPress={loginKeyPress}
+          ></Input>
         </Password>
-        <Button onClick={login}>로그인</Button>
+        <ButtonGrid>
+          <Button onClick={GoBack}>뒤로가기</Button>
+          <Button onClick={login}>로그인</Button>
+        </ButtonGrid>
         {/* <button onClick={onClickbtn}>회원가입</button> */}
       </LoginBox>
     </Container>
@@ -88,6 +130,10 @@ const Input = styled.input`
   border: none;
   height: 25px;
   padding: 10px;
+`;
+
+const ButtonGrid = styled.div`
+  display: flex;
 `;
 
 const Button = styled.button`

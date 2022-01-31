@@ -15,7 +15,6 @@ import { useAppDispatch } from "../redux/hooks";
 import Header from "../components/header";
 import Contents from "../components/contents";
 import Card from "../components/card";
-import { Link } from "react-router-dom";
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +32,6 @@ const Main = () => {
   }, []);
   return (
     <>
-      <Link to="/login">로그인</Link>
       <Header />
       <Contents />
       <Card />

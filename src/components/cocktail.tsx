@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
+import { Cookies } from "react-cookie";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { deleteCardDB } from "../redux/actions/cocktailActions";
 import { CoktailInfo } from "../types";
@@ -9,6 +10,9 @@ import styled from "styled-components";
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
   const ingredient = data.ingredient.split(",");
   const dispatch = useAppDispatch();
+  const cookies = new Cookies();
+  const admin = cookies.get("token");
+
   const [show, setShow] = useState(false);
 
   //수정하기
@@ -29,8 +33,12 @@ const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
   return (
     <Container>
       <Title>{data.name}</Title>
-      <EditBtn onClick={onClickEdit}>수정</EditBtn>
-      <DeleteBtn onClick={onClickDelete}>삭제</DeleteBtn>
+      {admin !== undefined ? (
+        <EditBtn onClick={onClickEdit}>수정</EditBtn>
+      ) : null}
+      {admin !== undefined ? (
+        <DeleteBtn onClick={onClickDelete}>삭제</DeleteBtn>
+      ) : null}
       <ContentsGrid>
         <Content>기주 : {data.base}</Content>
         <Ingredient>
