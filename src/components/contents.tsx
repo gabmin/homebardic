@@ -1,12 +1,14 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
 import { selectedBase } from "../redux/reducers/baseSlice";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import styled from "styled-components";
 
 const Contents: FunctionComponent = () => {
   const dispatch = useAppDispatch();
-  const [base, setBase] = useState("전체");
+  // 보기 상태
+  const { baseState } = useAppSelector((state) => state.base);
+  const [base, setBase] = useState(baseState);
 
   const onClickBtn = (props: string) => () => {
     setBase(`${props}`);

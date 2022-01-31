@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../redux/hooks";
 import { selectedModal } from "../redux/reducers/modal";
@@ -16,7 +16,6 @@ const Modal = () => {
   const [glass, setGlass] = useState("");
   const [desc, setDesc] = useState("");
 
-  useEffect(() => {}, []);
   // 닫기 버튼
   const closeBtn = () => {
     dispatch(selectedModal(false));

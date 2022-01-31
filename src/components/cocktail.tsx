@@ -1,18 +1,20 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
 import { Cookies } from "react-cookie";
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { deleteCardDB } from "../redux/actions/cocktailActions";
 import { CoktailInfo } from "../types";
 import Edit from "./edit";
 import styled from "styled-components";
 
 const Cocktail: FunctionComponent<{ data: CoktailInfo }> = ({ data }) => {
+  // 리스트 형식을 배열로 변환
   const ingredient = data.ingredient.split(",");
   const dispatch = useAppDispatch();
+  // 쿠키 가져오기
   const cookies = new Cookies();
   const admin = cookies.get("token");
-
+  // 수정하기 모달창 보이기, 안보이기
   const [show, setShow] = useState(false);
 
   //수정하기

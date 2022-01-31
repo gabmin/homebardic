@@ -1,7 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import api from "../../shared/axios";
-import type { RootState } from "../store";
-import { CoktailInfo } from "../../types";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   CocktailDB,
   JinDB,

@@ -1,14 +1,15 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 import Cocktail from "./cocktail";
 import { CoktailInfo } from "../types";
 
 import styled from "styled-components";
 
 const Card = () => {
+  // 보기 상태
   const { baseState } = useAppSelector((state) => state.base);
 
+  // 보기 상태에 따라 cards에 재할당
   let cards;
 
   if (baseState === "전체") {

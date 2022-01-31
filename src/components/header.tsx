@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Cookies } from "react-cookie";
 import { Link } from "react-router-dom";
@@ -10,10 +9,13 @@ import logo from "../images/logo.png";
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  // 쿠키 가져오기
   const cookies = new Cookies();
   const admin = cookies.get("token");
+  // 보기 상태
   const { modalState } = useAppSelector((state) => state.modal);
 
+  // 모달창 열기
   const openModal = () => {
     dispatch(selectedModal(true));
   };
@@ -21,7 +23,7 @@ const Header = () => {
   return (
     <Container>
       <ImageGrid>
-        <Image src={logo} />
+        <Image src={logo} alt="" />
       </ImageGrid>
       <LinkGrid>
         {admin === undefined ? <Link to="/login">admin</Link> : null}

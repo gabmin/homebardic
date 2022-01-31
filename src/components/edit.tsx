@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState, useCallback, FunctionComponent } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../redux/hooks";
-import { selectedModal } from "../redux/reducers/modal";
 import { editCardDB } from "../redux/actions/cocktailActions";
 import { CoktailInfo } from "../types";
 
