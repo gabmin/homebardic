@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const app = express();
 
 //환경변수 적용
@@ -36,6 +37,63 @@ DB.connect((err) => {
   } else {
     console.log("connection is fail");
   }
+});
+//회원가입 하기
+// app.post("/signin", function (req, res) {
+//   const id = "???";
+//   const pwd = "???";
+
+//   crypto.randomBytes(64, (err, buf) => {
+//     crypto.pbkdf2(
+//       pwd,
+//       buf.toString("base64"),
+//       100000,
+//       64,
+//       "sha512",
+//       (err, key) => {
+//         const salt = buf.toString("base64");
+//         const password = key.toString("base64");
+//         const sql = "INSERT INTO user (id, password, salt) VALUES ( ?, ?, ? )";
+//         DB.query(sql, [id, password, salt], function (error, results, fields) {
+//           if (error) {
+//             console.log(err);
+//             res.status(500).send("Internal Server Error");
+//           }
+//           res.send(results);
+//         });
+//       }
+//     );
+//   });
+// });
+
+//로그인 하기
+app.post("/login", function (req, res) {
+  const id = req.body.id;
+  const pwd = req.body.password;
+  const sql = "SELECT * FROM user WHERE id=?";
+  DB.query(sql, [id], function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    }
+    if (!results[0]) {
+      return res.send("아이디를 확인하세요.");
+    }
+
+    const user = results[0];
+    const token = jwt.sign({ id: id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "5d",
+    });
+    crypto.pbkdf2(pwd, user.salt, 100000, 64, "sha512", (err, key) => {
+      if (err) {
+        console.log(err);
+      }
+      if (key.toString("base64") === user.password) {
+        return res.send({ message: "success", token: token });
+      } else {
+        return res.send("비밀번호를 확인해 주세요.");
+      }
+    });
+  });
 });
 
 //모든 데이터 불러오기
