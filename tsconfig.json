@@ -5,6 +5,7 @@
     "jsx": "react",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "./dist/",
+    "sourceMap": true
   }
 }
