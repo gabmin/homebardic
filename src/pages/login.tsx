@@ -128,7 +128,7 @@ const Tag = styled.div`
 
 const Input = styled.input`
   border: none;
-  height: 25px;
+  height: 5px;
   padding: 10px;
 `;
 
@@ -145,4 +145,5 @@ const Button = styled.button`
   border: none;
   border-radius: 10px;
   color: #fff;
+  cursor: pointer;
 `;
