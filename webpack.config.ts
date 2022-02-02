@@ -11,6 +11,7 @@ console.log(process.env.NODE_ENV);
 const config: Configuration = {
   mode: isDevelopment ? "development" : "production", // 개발시에는 development, 실제 서비스시에는 production
   devtool: isDevelopment ? "eval" : "source-map", // 개발시에는 eval, 실제 서비스시에는 hidden-source-map
+
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
@@ -26,7 +27,11 @@ const config: Configuration = {
       {
         loader: require.resolve("babel-loader"),
         options: {
-          presets: ["@babel/preset-typescript"],
+          presets: [
+            "@babel/preset-typescript",
+            "@babel/preset-env",
+            "@babel/preset-react",
+          ],
           plugins: [
             isDevelopment && require.resolve("react-refresh/babel"),
           ].filter(Boolean),
