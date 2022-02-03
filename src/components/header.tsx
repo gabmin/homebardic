@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Modal from "../components/modal";
 import { selectedModal } from "../redux/reducers/modal";
 import styled from "styled-components";
-import logo from "../images/logo.png";
+import logo from "../../public/images/logo.png";
 
 const Header = () => {
   const dispatch = useAppDispatch();
