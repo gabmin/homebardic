@@ -4,8 +4,6 @@
 
 ### 📍 홈페이지 [homebardic](http://www.homebardic.com/)
 
-### 📍 GitHub [repository](https://github.com/gabmin/homebardic)
-
 <br>
 
 ## 🍸 프로젝트 소개
