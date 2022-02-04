@@ -2,6 +2,7 @@ import path from "path";
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshTypeScript from "react-refresh-typescript";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import { Configuration } from "webpack";
 require("dotenv").config();
 
@@ -25,7 +26,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        loader: require.resolve("babel-loader"),
+        loader: "babel-loader",
         options: {
           presets: [
             "@babel/preset-typescript",
@@ -55,9 +56,26 @@ const config: Configuration = {
         exclude: [/node_modules/],
         use: ["file-loader"],
       },
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: "html-loader",
+      //       options: { minimize: true },
+      //     },
+      //   ],
+      // },
     ],
   },
-  plugins: [new ReactRefreshPlugin(), new ForkTsCheckerWebpackPlugin()],
+  plugins: [
+    new ReactRefreshPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
+    // new HtmlWebpackPlugin({
+    //   template: "./public/index.html",
+    //   filename: "index.html",
+    //   hash: true,
+    // }),
+  ],
 
   //출력
   output: {
@@ -66,8 +84,10 @@ const config: Configuration = {
     publicPath: "./dist/",
   },
   devServer: {
-    // publicPath: "/dist/",
     hot: true,
+  },
+  stats: {
+    children: true,
   },
 };
 
