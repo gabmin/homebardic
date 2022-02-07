@@ -9,7 +9,7 @@ require("dotenv").config();
 const isDevelopment = process.env.NODE_ENV !== "production";
 console.log(process.env.NODE_ENV);
 
-const config: Configuration = {
+const config = {
   mode: isDevelopment ? "development" : "production", // 개발시에는 development, 실제 서비스시에는 production
   devtool: isDevelopment ? "eval" : "source-map", // 개발시에는 eval, 실제 서비스시에는 hidden-source-map
 
@@ -56,25 +56,25 @@ const config: Configuration = {
         exclude: [/node_modules/],
         use: ["file-loader"],
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: "html-loader",
-      //       options: { minimize: true },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new ReactRefreshPlugin(),
     new ForkTsCheckerWebpackPlugin(),
-    // new HtmlWebpackPlugin({
-    //   template: "./public/index.html",
-    //   filename: "index.html",
-    //   hash: true,
-    // }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "index.html",
+      hash: true,
+    }),
   ],
 
   //출력
@@ -84,6 +84,11 @@ const config: Configuration = {
     publicPath: "./dist/",
   },
   devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    devMiddleware: { publicPath: "/dist/" },
+    open: true,
     hot: true,
   },
   stats: {
