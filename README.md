@@ -37,27 +37,31 @@
 ### 메인 기능
 
 - 기주의 8가지 종류에 따라 제조법을 볼 수 있도록하여 기주를 기준으로 원하는 칵테일을 빠르게 찾을 수 있도록 하였습니다.
-  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcaVnbP%2FbtrsrWcUnzX%2FSw2xvUcwVKlXgD32L42Gc0%2Fimg.png)
+
+  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc3TP76%2FbtrsxIzknDU%2FnvtM59f80vk4RKI1t47SLK%2Fimg.png)
 
 - 이름은 칵테일 명칭, 기주는 기본이 되는 베이스 술, 재료는 기주에 첨가되는 각종 술, 용법은 4가지의 기본 제조 방법 (빌드, 블렌드, 스터, 쉐이크), 글라스는 칵테일 종류에 따른 잔의 종류, 설명은 칵테일에 대한 상세한 제조 방법 혹은 유래로 칵테일에 대한 6가지 정보를 제공하고 있습니다.
 
 ### 로그인 기능
 
 - 칵테일 제조법에 대한 정보제공 목적으로 만들어진 홈페이지로 관리자에게만 작성, 수정, 삭제의 권한을 갖기 위해 관리자용 계정 하나만 생성하여 사용하고 있습니다.
-  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F304Km%2Fbtrsvd5175Y%2FXa7rq2HKrYJtRKblKGW0N0%2Fimg.png)
+
+  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHmEhq%2FbtrsMXg5pIW%2FenB1mtmxZpkzSDo5B44OZ0%2Fimg.png)
+
 - JWT 토큰 인증 방식으로 쿠키에 저장하여 관리자 권한을 부여하는 방식으로 기능을 구현하였습니다.
 - crypto 모듈을 활용하여 해시화한 암호를 DB에 저장하여 보안성을 강화하였습니다.
 
 ### 작성, 수정, 삭제하기
 
 - 작성하기 버튼은 관리자 권한이 있을 때만 보이며, 작성 페이지는 모달창으로 구현하였습니다.
-  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcam5io%2FbtrsrVkJdET%2FumWKUfsGWKBS0g9jYxCM3K%2Fimg.png)
 
-  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5QaBH%2FbtrsC9Kbo5t%2FCbswvXEHllKYibTpC8duqk%2Fimg.png)
+  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FchxJE8%2FbtrsAbnqTCs%2FVpL33VzWkcMlmKwbP9wgy0%2Fimg.png)
 
 - 이름, 기주, 재료, 용법, 글라스, 설명을 입력받아 DB에 저장하는 기능을 구현하였습니다.
 - 수정하기 버튼 역시 관리자 권한이 있을 경우에만 보이며, 모달창으로 구현하였습니다.
-  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb5KIgd%2FbtrspKxgYRH%2FAZraml3iaW8Sc2t5tH5ePK%2Fimg.png)
+
+  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FAeALT%2FbtrsNyhk5hp%2F7KeDkd5pPPs9V38dvvQkg1%2Fimg.png)
+
 - 삭제하기는 alert으로 삭제 여부를 확인 후 삭제되도록 기능을 구현하였습니다.
 
 <br>
