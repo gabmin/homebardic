@@ -4,8 +4,6 @@
 
 ### 📍 홈페이지 [homebardic](http://www.homebardic.com/)
 
-### 📍 GitHub [repository](https://github.com/gabmin/homebardic)
-
 <br>
 
 ## 🍸 프로젝트 소개
@@ -59,8 +57,6 @@
 
   ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FchxJE8%2FbtrsAbnqTCs%2FVpL33VzWkcMlmKwbP9wgy0%2Fimg.png)
 
-  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5QaBH%2FbtrsC9Kbo5t%2FCbswvXEHllKYibTpC8duqk%2Fimg.png)
-
 - 이름, 기주, 재료, 용법, 글라스, 설명을 입력받아 DB에 저장하는 기능을 구현하였습니다.
 - 수정하기 버튼 역시 관리자 권한이 있을 경우에만 보이며, 모달창으로 구현하였습니다.
 
@@ -70,7 +66,7 @@
 
 <br>
 
-## 프로젝트를 통해 배운 점
+## ✍️ 프로젝트를 통해 배운 점
 
 ### TypeScript
 
@@ -78,7 +74,7 @@
 
 ### webpack
 
-- 이전까지는 매번 Create React App을 통해서 프로젝트를 진행하다 처음으로 Webpack을 사용해보게 되었습니다. Webpack을 공부해보면서 CRA가 엄청나게 다양한 기능을 수행하고 있다는 것을 알게 되었습니다. 또한, 번들러의 기능과 필요한 이유에 대해 배울 수 있었던 좋은 기회가 되었습니다.
+- 이전까지는 매번 Create React App을 통해서 프로젝트를 진행하다 처음으로 Webpack을 사용해보게 되었습니다. Webpack을 공부해보면서 CRA의 기능을 이해하는 데 많은 도움이 되었습니다. 또한, 번들러의 기능과 필요한 이유에 대해 배울 수 있었던 좋은 기회가 되었습니다.
 - 계속되는 버전 업데이트로 인해 많은 변화가 생겨 오류가 발생할 경우 해결할 레퍼런스를 찾기가 어려웠습니다. 그래서 공부하고 습득한 기술에 대해 계속해서 관심을 갖고 업데이트 사항에 대해 끊임없는 공부가 필요하다고 생각하게 되었습니다. 또한, 고민하고 공부한 것에 대해 기록함으로써 같은 어려움을 겪는 다른 개발자들을 위해 조금이나마 도움이 될 수 있도록 노력해야겠다고 생각하였습니다.
 - webpack의 여러 가지 자세한 설정에 아직 이해가 부족하고 생각해서 webpack, devserver, babel 등에 대해 더욱 깊게 공부할 필요성을 느끼게 되었습니다.
 
