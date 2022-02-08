@@ -56,7 +56,9 @@
 - 작성하기 버튼은 관리자 권한이 있을 때만 보이며, 작성 페이지는 모달창으로 구현하였습니다.
 
   ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FchxJE8%2FbtrsAbnqTCs%2FVpL33VzWkcMlmKwbP9wgy0%2Fimg.png)
-
+  
+  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5QaBH%2FbtrsC9Kbo5t%2FCbswvXEHllKYibTpC8duqk%2Fimg.png)
+  
 - 이름, 기주, 재료, 용법, 글라스, 설명을 입력받아 DB에 저장하는 기능을 구현하였습니다.
 - 수정하기 버튼 역시 관리자 권한이 있을 경우에만 보이며, 모달창으로 구현하였습니다.
 
