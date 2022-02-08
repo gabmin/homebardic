@@ -188,10 +188,10 @@ const Input = styled.input`
 
 const Textarea = styled.textarea`
   width: 60%;
-  height: 100px;
+  height: 70px;
   border: none;
   border-radius: 7px;
-  padding: 10px;
+  padding: 5px;
 `;
 
 const Button = styled.button`
