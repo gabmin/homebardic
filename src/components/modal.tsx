@@ -8,7 +8,6 @@ import { addCardDB } from "../redux/actions/cocktailActions";
 const Modal = () => {
   const dispatch = useAppDispatch();
 
-  const [save, setSave] = useState(false);
   const [name, setName] = useState("");
   const [base, setBase] = useState("");
   const [ingredient, setIngredinent] = useState("");
@@ -22,40 +21,46 @@ const Modal = () => {
   };
 
   // 칵테일 이름
-  const onChangeName = useCallback((e) => {
-    e.preventDefault();
-    setName(e.currentTarget.value);
-  }, []);
+  const onChangeName = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setName(e.target.value);
+  };
 
   // 기주
-  const onChangeBase = useCallback((e) => {
-    e.preventDefault();
-    setBase(e.currentTarget.value);
-  }, []);
+  const onChangeBase = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setBase(e.target.value);
+  };
 
   //재료
-  const onChangeIngredients = useCallback((e) => {
-    e.preventDefault();
-    setIngredinent(e.currentTarget.value);
-  }, []);
+  const onChangeIngredients = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setIngredinent(e.target.value);
+  };
 
   //기법
-  const onChangeMethod = useCallback((e) => {
-    e.preventDefault();
-    setMethod(e.currentTarget.value);
-  }, []);
+  const onChangeMethod = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setMethod(e.target.value);
+  };
 
   //글라스
-  const onChangeGlass = useCallback((e) => {
-    e.preventDefault();
-    setGlass(e.currentTarget.value);
-  }, []);
+  const onChangeGlass = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setGlass(e.target.value);
+  };
 
   //설명
-  const onChangeDesc = useCallback((e) => {
-    e.preventDefault();
-    setDesc(e.currentTarget.value);
-  }, []);
+  const onChangeDesc = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setDesc(e.target.value);
+  };
 
   // 저장하기
   const onClickBtn = () => {
