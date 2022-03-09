@@ -56,9 +56,9 @@
 - 작성하기 버튼은 관리자 권한이 있을 때만 보이며, 작성 페이지는 모달창으로 구현하였습니다.
 
   ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FchxJE8%2FbtrsAbnqTCs%2FVpL33VzWkcMlmKwbP9wgy0%2Fimg.png)
-  
+
   ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5QaBH%2FbtrsC9Kbo5t%2FCbswvXEHllKYibTpC8duqk%2Fimg.png)
-  
+
 - 이름, 기주, 재료, 용법, 글라스, 설명을 입력받아 DB에 저장하는 기능을 구현하였습니다.
 - 수정하기 버튼 역시 관리자 권한이 있을 경우에만 보이며, 모달창으로 구현하였습니다.
 
@@ -72,7 +72,7 @@
 
 ### TypeScript
 
-- 타입스크립트를 활용해서 프로젝트를 완성하였지만, 기능을 제대로 이해하고 장점을 잘 이용하지 못했던 것 같아 아쉬웠습니다. 프로젝트 규모가 작다 보니 사실상 자바스크립트로 구현했을 때와 큰 차이가 없었습니다. 기회가 된다면 더 큰 규모의 프로젝트를 진행해보고 싶습니다.
+- 타입스크립트를 활용해보니 즉각적으로 오류를 확인할 수 있고 디버깅에 대한 힌트도 얻을 수 있어서 제대로 된 코드를 작성하는데 많은 도움이 되었습니다. 다음에 기회가 된다면 더 큰 규모의 프로젝트를 진행해보고 싶습니다.
 
 ### webpack
 
